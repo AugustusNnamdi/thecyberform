@@ -40,14 +40,11 @@ jobs:
           bandit -r . --verbose -f txt -o bandit_report/bandit-report.txt || true
           bandit -r . --verbose -f html -o bandit_report/index.html || true
 
-      - name: Upload Bandit report (txt)
+      - name: Upload Bandit Reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: bandit-report-txt
-          path: bandit-report.txt
+          name: bandit-reports
+          path: bandit_report/
+          retention-days: 30
 
-      - name: Upload Bandit report (html)
-        uses: actions/upload-artifact@v4
-        with:
-          name: bandit-report-html
-          path: bandit-report.html
