@@ -354,7 +354,7 @@ def iso_to_pretty(value, fmt='%B %-d, %Y'):
 
 if __name__ == '__main__':
     host = os.getenv("FLASK_RUN_HOST", "127.0.0.1")
-    port = int(os.getenv("FLASK_RUN_PORT", 5000))
+    port = int(os.getenv("APP_PORT", "5000"))
     debug = os.getenv("FLASK_DEBUG", "False").lower() in ("true", "1", "yes")
 
     app.run(host=host, port=port, debug=debug)
