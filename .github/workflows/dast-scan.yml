@@ -1,4 +1,4 @@
-name: Flask Blog Security Scan
+name: OWASP ZAP DAST Security Scan
 
 on:
   push:
@@ -69,3 +69,8 @@ jobs:
           path: |
             zap_report.txt
             zap_report.html
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: true
+          include-hidden-files: false
+
