@@ -51,8 +51,6 @@ jobs:
         with:
           target: 'http://localhost:8080'
           cmd_options: "-a"
-          allow_issue_writing: false
-          fail_action: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
