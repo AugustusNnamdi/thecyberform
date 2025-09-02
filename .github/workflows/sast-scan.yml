@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Bandit
-        run: pip install bandit
+        run: pip install bandit==1.8.6
 
       - name: Run Bandit Security Scan
         run: |
@@ -36,4 +36,5 @@ jobs:
           path: |
             bandit-report.txt
             bandit-report.html
+
 
