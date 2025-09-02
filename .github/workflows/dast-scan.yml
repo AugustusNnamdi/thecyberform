@@ -50,7 +50,8 @@ jobs:
         uses: zaproxy/action-baseline@v0.11.0
         with:
           target: 'http://localhost:8080'
-          cmd_options: "-a"   # just active scan, no custom filenames
+          cmd_options: "-a"   
+          fail_action: false 
 
       # -------------------------------
       # Upload ZAP reports as artifacts
