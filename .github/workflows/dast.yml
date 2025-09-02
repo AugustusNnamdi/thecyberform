@@ -1,0 +1,155 @@
+name: OWASP ZAP DAST Security Scan
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  actions: read
+
+jobs:
+  zap-dast-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -------------------------------
+      # Checkout repo
+      # -------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # -------------------------------
+      # Set up Python
+      # -------------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # -------------------------------
+      # Install dependencies and setup
+      # -------------------------------
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt gunicorn
+
+      # -------------------------------
+      # Initialize database
+      # -------------------------------
+      - name: Initialize database
+        run: python init_db.py
+
+      # -------------------------------
+      # Start Flask app using Gunicorn
+      # -------------------------------
+      - name: Start Flask blog
+        run: |
+          gunicorn -w 2 -b 0.0.0.0:8080 app:app &
+          # wait until server is up and responding
+          for i in {1..30}; do
+            if curl -f http://localhost:8080/ > /dev/null 2>&1; then
+              echo "Flask started and responding"
+              break
+            fi
+            echo "Waiting for Flask to start... ($i/30)"
+            sleep 2
+          done
+          # Test the endpoint
+          curl -I http://localhost:8080/ || echo "Warning: App may not be fully ready"
+
+      # -------------------------------
+      # Prepare ZAP workspace
+      # -------------------------------
+      # - name: Prepare ZAP working folder
+      #   run: mkdir -p /zap/wrk
+      
+
+      # -------------------------------
+      # Run OWASP ZAP Baseline Scan
+      # -------------------------------
+      - name: Run OWASP ZAP Scan
+        uses: zaproxy/action-baseline@v0.11.0
+        continue-on-error: true
+        with:
+          target: 'http://localhost:8080/'
+          cmd_options: "-a"
+          fail_action: false
+          allow_issue_writing: false
+        env:
+          GITHUB_TOKEN: ''
+          
+
+      # -------------------------------
+      # Prepare report folder for GitHub Pages
+      # -------------------------------
+      - name: Prepare report for GitHub Pages
+        if: always()
+        run: |
+          mkdir -p zap_report
+          # Check if ZAP generated any reports
+          if [ -f "report_html.html" ]; then
+            mv report_html.html zap_report/index.html
+            echo "ZAP HTML report found and moved"
+          else
+            echo "<h1>ZAP Scan Report</h1><p>No report generated or scan failed.</p>" > zap_report/index.html
+            echo "Created placeholder report"
+          fi
+          # List contents for debugging
+          echo "Contents of zap_report directory:"
+          ls -la zap_report/
+
+      # -------------------------------
+      # Deploy HTML report to GitHub Pages (Primary Method)
+      # -------------------------------
+      - name: Deploy ZAP HTML report to GitHub Pages
+        id: publish
+        if: always()
+        continue-on-error: true
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./zap_report
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "Deploy ZAP security scan report"
+          allow_empty_commit: true
+      
+      # -------------------------------
+      # Fallback: Upload as artifacts if GitHub Pages fails
+      # -------------------------------
+      - name: Upload ZAP Report as Artifact (Fallback)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-security-report
+          path: zap_report/
+          retention-days: 30
+
+      # -------------------------------
+      # Report final status and access methods
+      # -------------------------------
+      - name: Report ZAP Report Access Information
+        if: always()
+        run: |
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f2)
+          REPO_OWNER=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
+          REPORT_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
+          
+          echo "=== 📊 ZAP Security Scan Report Access ==="
+          echo "🔗 GitHub Pages URL: ${REPORT_URL}"
+          echo "📦 Workflow Run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          echo ""
+          echo "📋 Access Methods:"
+          echo "1. 🌐 GitHub Pages: ${REPORT_URL} (may take 5-10 minutes to update)"
+          echo "2. 📁 Artifacts: Download from the workflow run link above"
+          echo "3. 🔍 Raw Files: Check the 'zap_report' folder in this workflow run"
+          
+          # Set output for other jobs/steps
+          echo "zap_report_url=${REPORT_URL}" >> $GITHUB_OUTPUT
+          echo "workflow_url=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_OUTPUT
