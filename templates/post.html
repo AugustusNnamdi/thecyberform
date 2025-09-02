@@ -1,0 +1,70 @@
+{% extends 'base.html' %}{% block content %}
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+<!-- Main Blog Post Content -->
+  <div class="row justify-content-center">
+    <main class="container py-5 flex-grow-1">
+      <article class="card shadow-sm mb-4">
+       <img src="{{ post.image_url or url_for('static', filename='img/post.jpg') }}" 
+        class="img-fluid rounded mx-auto d-block mb-4" 
+        style="max-width: 750px; max-height: 500px; object-fit: cover;"; 
+        alt="Post image">
+        <div class="card-body">
+          <h1 class="h3 fw-bold mb-2">{{ post.title }}</h1>
+          <div class="mb-3 text-muted small">
+            By {{ post.author }} &middot;
+            <span>
+              {{ post.created|iso_to_pretty }}
+            </span>
+          </div>
+          <div class="mb-4">
+            {{ post.content|safe }}
+          </div>
+          <a href="{{ url_for('index') }}" class="btn btn-outline-primary btn-sm">&larr; Back to Blog</a>
+          {% if session.username and session.username == post.author %}
+          <a href="{{ url_for('edit', post_id=post.id) }}" class="btn btn-warning btn-sm">
+            Edit Post
+          </a>
+        {% endif %}
+        </div>
+      </article>
+
+      <!-- Comments Section -->
+      <section>
+        <h2 class="h5 mb-3">Comments</h2>
+        {% if comments %}
+          <ul class="list-group mb-4">
+            {% for comment in comments %}
+              <li class="list-group-item">
+                <div class="fw-semibold">{{ comment.author }}</div>
+                <div class="small text-muted mb-1">{{ comment.created|iso_to_pretty }}</div>
+                <div>{{ comment.content|safe }}</div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-muted">No comments yet.</p>
+        {% endif %}
+
+        <!-- Comment form (shown if user is logged in) -->
+        {% if session.username %}
+        <form action="{{ url_for('add_comment', post_id=post.id) }}" method="post" class="mb-1 justify-content-center"  
+            style="max-width: 800px; max-height: 300px; margin: 0 auto;">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Add a comment:</label>
+            <input id="comment" type="hidden" name="comment" value="{{ request.form.get('comment', '') }}">
+            <trix-editor input="comment" class="bg-white"></trix-editor>
+          </div>
+          <div class="d-grid d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary btn-sm">Post Comment</button>
+          </div>
+        </form>
+        {% endif %}
+      </section>
+    </main>
+  </div>
+
+</body>
+
+{% endblock %}

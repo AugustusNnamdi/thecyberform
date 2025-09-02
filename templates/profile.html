@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% block content %}
+<body class="bg-light d-flex flex-column min-vh-100">
+  <!-- PROFILE CARD -->
+  <main class="container py-5 flex-grow-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <!-- Main card -->
+        <div class="card shadow-sm">
+          <div class="card-body text-center">
+            <!-- Avatar -->
+            <img
+              src="{{ url_for('static', filename='img/avatar.png') }}"
+              class="rounded-circle mb-3"
+              style="width: 120px; height: 120px; object-fit: cover"
+              alt="User avatar"
+            />
+
+            <!-- Basic details -->
+            <h1 class="h4 fw-bold mb-0">{{ session.username }}</h1>
+            <h1 class="h4 fw-bold mb-0">{{ session.name }}</h1>
+            <p class="text-muted mb-1">{{ session.email }}</p>
+            <p class="text-muted small">
+              Member since {{ session.member_since|iso_to_pretty('%B %Y') }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="card mt-4 shadow-sm">
+          <div class="card-header bg-primary bg-gradient text-white">
+            Your stats
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Posts</span>
+              <span>{{ posts|length }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Your posts -->
+        <div class="card mt-4 shadow-sm">
+          <div class="card-header bg-primary bg-gradient text-white">
+            Your posts
+          </div>
+          <ul class="list-group list-group-flush">
+            {% for post in posts %}
+            <li class="list-group-item">
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2"
+              >
+                <div>
+                  <div class="fw-semibold">{{ post['title'] }}</div>
+                  <div class="text-muted small">
+                    {{ post['created']|iso_to_pretty('%B %d, %Y at %H:%M') }}
+                  </div>
+                </div>
+                <div class="btn-group btn-group-sm mt-2 mt-md-0" role="group">
+                  <a
+                    href="{{ url_for('edit', post_id=post['id']) }}"
+                    class="btn btn-warning"
+                    >Edit</a
+                  >
+                  <form
+                    action="{{ url_for('delete', post_id=post['id']) }}"
+                    method="post"
+                    style="display: inline"
+                  >
+                    <button
+                      type="submit"
+                      class="btn btn-danger"
+                      onclick="return confirm('Are you sure you want to delete this post?');"
+                    >
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="h4 fw-bold mb-4">Search Results{% if query %} for "{{ query }}"{% endif %}</h1>
+
+  <!-- If there are results -->
+  {% if posts and posts|length > 0 %}
+    <div class="row g-4">
+      {% for post in posts %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 text-bg-dark border-0">
+          <img src="{{ post.image_url or url_for('static', filename='img/post.jpg') }}" class="card-img-top" alt="Post image">
+          <div class="card-body">
+            <h3 class="h5 card-title">
+              <a href="{{ url_for('post', post_id=post.id) }}" class="text-white text-decoration-none">
+                {{ post.title }}
+              </a>
+            </h3>
+            <p class="card-text small text-body-secondary">
+              {{ post.created|iso_to_pretty('%B %d, %Y at %H:%M') }} · by {{ post.author }}
+            </p>
+            <p class="card-text small">
+              {{ post.content | striptags | truncate(100, True, '...') }}
+            </p>
+            <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-sm btn-outline-primary">Read more</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-5">
+      <i class="bi bi-search"></i> No results found{% if query %} for "<strong>{{ query }}</strong>"{% endif %}.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

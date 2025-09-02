@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<!-- HERO BANNER -->
+<header class="bg-primary text-white text-center py-5">
+  <div class="container">
+    <h1 class="display-5 fw-bold">Stay ahead of Cyber threats</h1>
+    <p class="lead mb-4">Practical guides, news and tips for security-minded professionals.</p>
+    <img src="{{ url_for('static', filename='img/hero.jpg') }}" class="img-fluid rounded shadow" style="max-height:100px" alt="Cyber security hero">
+  </div>
+</header>
+
+<!-- BLOG POST LIST -->
+<main class="py-5">
+  <div class="container">
+    <h2 class="h4 fw-bold mb-4">Latest posts</h2>
+
+    <div class="row g-4">
+      {% for post in posts %}
+      <!-- Posts -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 text-bg-dark border-0">
+          <img src="{{ post['image_url'] or url_for('static', filename='img/post.jpg') }}" class="card-img-top" alt="Post image">
+          <div class="card-body">
+            <h3 class="h5 card-title">{{ post['title'] }}</h3>
+            <p class="card-text small text-body-secondary">
+              {{ post['created']|iso_to_pretty('%B %d, %Y at %H:%M') }} · by {{ post['author'] }}
+            </p>
+            <p class="card-text small">
+              {{ post['content'] | strip_html | truncate(100, True, '...') }}
+            </p>
+            <a href="{{ url_for('post', post_id=post['id']) }}" class="btn btn-sm btn-outline-primary">Read more</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}

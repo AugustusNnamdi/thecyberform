@@ -1,0 +1,79 @@
+{% extends 'base.html' %} {% block content %}
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+<main class="container py-5 flex-grow-1">
+  <header class="text-center mb-5">
+    <h1 class="display-6 fw-bold">Contact Us</h1>
+    <p class="text-muted mb-0">We'll reply within one business day.</p>
+  </header>
+
+  <div class="row g-5 justify-content-center">
+
+    <!-- Contact form -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-4">Send a message</h2>
+
+          <form action="#" method="post">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input id="name" name="name" type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input id="email" name="email" type="email" class="form-control" required>
+            </div>
+
+            <!-- NEW: issue category -->
+            <div class="mb-3">
+              <label for="issue" class="form-label">What is your issue about?</label>
+              <select id="issue" name="issue" class="form-select" required>
+                <option selected disabled value="">Choose…</option>
+                <option>I want to join/register</option>
+                <option>Account / login problem</option>
+                <option>Technical issue / bug</option>
+                <option>Billing or payment question</option>
+                <option>Report abuse or spam</option>
+                <option>Content removal request</option>
+                <option>Partnership or advertising</option>
+                <option>General feedback</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="subject" class="form-label">Subject</label>
+              <input id="subject" name="subject" type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact details -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-3">Our Details</h2>
+          <p class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>123 Cyber Street, Suite 404<br>Little elm 1000-001, USA</p>
+          <p class="mb-2"><i class="bi bi-envelope-fill me-2"></i>support@thecyberforum.com</p>
+          <p class="mb-0"><i class="bi bi-telephone-fill me-2"></i>+1 21 000 0000</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</body>
+{% endblock %}
