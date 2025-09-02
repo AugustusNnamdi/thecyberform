@@ -85,10 +85,15 @@ jobs:
       # -------------------------------
       # Upload as artifacts
       # -------------------------------
-      - name: Upload ZAP Report as Artifact
+      - name: Upload ZAP Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: zap-security-report
-          path: zap_report/
-          retention-days: 30
+          name: zap-reports
+          path: |
+            report.md
+            report.html
+            report.json
+          if-no-files-found: warn
+          overwrite: true
+
