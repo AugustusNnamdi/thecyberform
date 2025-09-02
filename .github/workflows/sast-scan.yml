@@ -24,8 +24,8 @@ jobs:
 
       - name: Run Bandit Security Scan
         run: |
-          bandit -r . -f txt -o bandit-report.txt || true
-          bandit -r . -f html -o bandit-report.html || true
+          bandit -r . --verbose -f txt -o bandit-report.txt || true
+          bandit -r . --verbose -f html -o bandit-report.html || true
 
       
       - name: Upload Bandit Reports
@@ -36,3 +36,4 @@ jobs:
           path: |
             bandit-report.txt
             bandit-report.html
+
