@@ -51,8 +51,6 @@ jobs:
         with:
           target: 'http://localhost:8080'
           cmd_options: "-a"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # -------------------------------
       # Upload ZAP reports as artifacts
