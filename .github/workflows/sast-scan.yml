@@ -2,9 +2,9 @@ name: Bandit SAST Security Scan
 
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
   push:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
   security-scan:
@@ -41,53 +41,12 @@ jobs:
           bandit -r . --verbose -f html -o bandit_report/index.html || true
 
       # -------------------------------
-      # Deploy Bandit report to GitHub Pages
+      # Upload Bandit report as artifact
       # -------------------------------
-      - name: Deploy Bandit HTML report to GitHub Pages
-        id: publish_bandit
+      - name: Upload Bandit Reports
         if: always()
-        continue-on-error: true
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./bandit_report
-          publish_branch: gh-pages
-          force_orphan: false
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
-          commit_message: "Deploy Bandit security scan report"
-          allow_empty_commit: true
-
-      # -------------------------------
-      # Fallback: Upload Bandit report as artifact
-      # -------------------------------
-      - name: Upload Bandit Report as Artifact (Fallback)
-        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: bandit-security-report
+          name: bandit-reports
           path: bandit_report/
           retention-days: 30
-
-      # -------------------------------
-      # Report access info
-      # -------------------------------
-      - name: Report Bandit Report Access Information
-        if: always()
-        run: |
-          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f2)
-          REPO_OWNER=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
-          REPORT_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
-          
-          echo "=== 📊 Bandit Security Scan Report ==="
-          echo "🔗 GitHub Pages URL: ${REPORT_URL}"
-          echo "📦 Workflow Run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          echo ""
-          echo "📋 Access Methods:"
-          echo "1. 🌐 GitHub Pages: ${REPORT_URL} (may take 5-10 minutes to update)"
-          echo "2. 📁 Artifacts: Download from the workflow run link above"
-          echo "3. 🔍 Raw Files: Check the 'bandit_report' folder in this workflow run"
-          
-          # Set outputs for other jobs/steps
-          echo "bandit_report_url=${REPORT_URL}" >> $GITHUB_OUTPUT
-          echo "workflow_url=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_OUTPUT
