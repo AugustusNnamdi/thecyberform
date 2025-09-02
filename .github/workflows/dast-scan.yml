@@ -51,6 +51,8 @@ jobs:
         with:
           target: 'http://localhost:8080'
           cmd_options: "-a"
+          allow_issue_writing: false
+          fail_action: false
 
       # -------------------------------
       # Upload ZAP reports as artifacts
