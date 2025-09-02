@@ -11,24 +11,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -------------------------------
+      # Checkout code
+      # -------------------------------
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # -------------------------------
+      # Set up Python
+      # -------------------------------
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # -------------------------------
+      # Install Bandit
+      # -------------------------------
       - name: Install Bandit
         run: pip install bandit==1.8.6
 
+      # -------------------------------
+      # Run Bandit Security Scan
+      # -------------------------------
       - name: Run Bandit Security Scan
         run: |
-          bandit -r . --verbose -f txt -o bandit-report.txt || true
-          bandit -r . --verbose -f html -o bandit-report.html || true
+          mkdir -p bandit_report
+          bandit -r . --verbose -f txt -o bandit_report/bandit-report.txt || true
+          bandit -r . --verbose -f html -o bandit_report/index.html || true
 
       # -------------------------------
-      # Deploy Bandit HTML report to GitHub Pages
+      # Deploy Bandit report to GitHub Pages
       # -------------------------------
       - name: Deploy Bandit HTML report to GitHub Pages
         id: publish_bandit
@@ -37,16 +50,16 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./bandit_report        # folder containing Bandit HTML report
+          publish_dir: ./bandit_report
           publish_branch: gh-pages
-          force_orphan: true
+          force_orphan: false
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
           commit_message: "Deploy Bandit security scan report"
           allow_empty_commit: true
 
       # -------------------------------
-      # Fallback: Upload Bandit report as artifact if GitHub Pages fails
+      # Fallback: Upload Bandit report as artifact
       # -------------------------------
       - name: Upload Bandit Report as Artifact (Fallback)
         if: failure()
@@ -57,7 +70,7 @@ jobs:
           retention-days: 30
 
       # -------------------------------
-      # Report final status and access methods
+      # Report access info
       # -------------------------------
       - name: Report Bandit Report Access Information
         if: always()
@@ -66,7 +79,7 @@ jobs:
           REPO_OWNER=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f1)
           REPORT_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
           
-          echo "=== 📊 Bandit Security Scan Report Access ==="
+          echo "=== 📊 Bandit Security Scan Report ==="
           echo "🔗 GitHub Pages URL: ${REPORT_URL}"
           echo "📦 Workflow Run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           echo ""
@@ -75,7 +88,6 @@ jobs:
           echo "2. 📁 Artifacts: Download from the workflow run link above"
           echo "3. 🔍 Raw Files: Check the 'bandit_report' folder in this workflow run"
           
-          # Set output for other jobs/steps
+          # Set outputs for other jobs/steps
           echo "bandit_report_url=${REPORT_URL}" >> $GITHUB_OUTPUT
           echo "workflow_url=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_OUTPUT
-
