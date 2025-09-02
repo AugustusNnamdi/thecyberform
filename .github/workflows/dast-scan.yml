@@ -44,19 +44,13 @@ jobs:
           done
 
       # -------------------------------
-      # Prepare ZAP workspace
-      # -------------------------------
-      # - name: Prepare ZAP working folder
-      #   run: mkdir -p /zap/wrk
-
-      # -------------------------------
-      # Run OWASP ZAP DAST Scan
+      # Run OWASP ZAP Baseline Scan
       # -------------------------------
       - name: Run OWASP ZAP Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
           target: 'http://localhost:8080'
-          cmd_options: "-a -r zap_reports.html -w zap_reports.txt"
+          cmd_options: "-a"   # just active scan, no custom filenames
 
       # -------------------------------
       # Upload ZAP reports as artifacts
@@ -67,10 +61,7 @@ jobs:
         with:
           name: zap-reports
           path: |
-            zap_report.txt
-            zap_report.html
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: true
-          include-hidden-files: false
+            report_json.json
+            report_md.md
+            report_html.html
 
