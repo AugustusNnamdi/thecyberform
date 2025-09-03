@@ -19,126 +19,6 @@
         "cells": [
           {
             "position": {
-              "x": 111.25,
-              "y": 115
-            },
-            "size": {
-              "width": 140,
-              "height": 130
-            },
-            "attrs": {
-              "text": {
-                "text": "Flask App / \n\nWeb App"
-              },
-              "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "process",
-            "ports": {
-              "groups": {
-                "top": {
-                  "position": "top",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "right": {
-                  "position": "right",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "bottom": {
-                  "position": "bottom",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "left": {
-                  "position": "left",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                }
-              },
-              "items": [
-                {
-                  "group": "top",
-                  "id": "b2e06ef7-d7d0-4510-9d8c-0ed10082baff"
-                },
-                {
-                  "group": "right",
-                  "id": "370a3cc9-d730-45a4-a8cc-4244ea7f6084"
-                },
-                {
-                  "group": "bottom",
-                  "id": "4328797b-1801-4f54-bdde-fbd7d78b6baa"
-                },
-                {
-                  "group": "left",
-                  "id": "871c096f-9d04-476a-8f38-f040587352d8"
-                }
-              ]
-            },
-            "id": "d0c92a8a-1a27-4b6c-b284-c7919689a191",
-            "zIndex": 1,
-            "data": {
-              "type": "tm.Process",
-              "name": "Flask App / \n\nWeb App",
-              "description": "Python web application built using Flask.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
-              "isWebApplication": false,
-              "privilegeLevel": "",
-              "threats": []
-            }
-          },
-          {
-            "position": {
               "x": 766.25,
               "y": -49.999999999999986
             },
@@ -256,8 +136,8 @@
           },
           {
             "position": {
-              "x": 110,
-              "y": -39.999999999999986
+              "x": 70,
+              "y": 10
             },
             "size": {
               "width": 112.5,
@@ -373,8 +253,8 @@
           },
           {
             "position": {
-              "x": 106.25,
-              "y": 350
+              "x": 152.5,
+              "y": 190
             },
             "size": {
               "width": 150,
@@ -610,13 +490,6 @@
               "hasOpenThreats": false,
               "providesAuthentication": false,
               "threats": []
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -738,8 +611,8 @@
           },
           {
             "position": {
-              "x": 420,
-              "y": 150
+              "x": 472.5,
+              "y": 70
             },
             "size": {
               "width": 112.5,
@@ -845,6 +718,123 @@
               "type": "tm.Actor",
               "name": "API",
               "description": "RESTful or ad-hoc endpoints (e.g., /api/posts, /login, /new_post)",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 162.5,
+              "y": -210
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Flask App / \n\nWeb App"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "282eaa40-e2e3-488e-a4a8-ccacc24571ff"
+                },
+                {
+                  "group": "right",
+                  "id": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+                },
+                {
+                  "group": "left",
+                  "id": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+                }
+              ]
+            },
+            "id": "7727bbe8-429f-4985-bac1-4c062d34cef9",
+            "zIndex": 8,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Flask App / \n\nWeb App",
+              "description": "Python web application built using Flask.",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
