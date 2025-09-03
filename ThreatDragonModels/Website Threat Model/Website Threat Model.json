@@ -19,7 +19,7 @@
         "cells": [
           {
             "position": {
-              "x": 1090,
+              "x": 1080,
               "y": -190
             },
             "size": {
@@ -144,11 +144,24 @@
                   "new": false,
                   "number": 2,
                   "score": "7.0"
+                },
+                {
+                  "id": "f898f62b-5902-40aa-8ba4-a5b144f1dbba",
+                  "title": "Generic Repudiation",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Users deny login/logout without proper logging",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "5.5"
                 }
               ],
               "threatFrequency": {
                 "spoofing": 2,
-                "repudiation": 0
+                "repudiation": 1
               }
             }
           },
@@ -166,8 +179,8 @@
                 "text": "Login Session\nManager"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -264,9 +277,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "cf056832-d364-4a2f-bb7e-82d397ba8f83",
+                  "title": "Generic Spoofing threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Stolen or forged session tokens.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "5.8"
+                },
+                {
+                  "id": "49e91cd9-89f6-438d-9fcd-fe4b3103f278",
+                  "title": "Generic Repudiation threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Users deny login/logout without proper logging.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -283,11 +327,13 @@
                 "text": "Database Server"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -384,13 +430,33 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "4d4a479b-a2fd-4a37-afcd-abbb693f64d0",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "SQL injection, or unauthorized modifications",
+                  "mitigation": "Enforce the principle of least privilege\nUse prepared statements and parameterized queries\nRestrict network access database should not be directly accessible from the public internet",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "7.2"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": -1,
+                "informationDisclosure": 3,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -407,8 +473,8 @@
                 "text": "API"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -505,9 +571,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "074dea01-ec3c-41c0-8350-8b9ddf802abb",
+                  "title": "Generic Spoofing Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Fake clients pretending to be trusted apps.",
+                  "mitigation": "Use a standardized OAuth, token-based authorization framework\nImplement Least Privilege permissions, such as using Role-Based Access Control (RBAC) to ensure that each API key or token has the minimum permissions necessary for its intended task.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": "7.5"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
             },
             "children": []
           },
@@ -629,10 +713,75 @@
             }
           },
           {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Internet boundary"
+            ],
+            "id": "6ebd7917-a0a3-4724-a047-f58b85ba75a6",
+            "source": {
+              "x": 1070,
+              "y": -250
+            },
+            "target": {
+              "x": 930,
+              "y": 70
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": -60
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Data Boundary",
+              "description": "This trust between Data and Webapp exchange.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Data Boundary"
+            ],
+            "id": "cf9ee624-058e-46af-95f8-711359cffa08",
+            "source": {
+              "x": 360,
+              "y": 40
+            },
+            "target": {
+              "x": 560,
+              "y": 260
+            },
+            "vertices": [
+              {
+                "x": 500,
+                "y": 40
+              }
+            ]
+          },
+          {
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -648,20 +797,161 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
-              "description": "",
+              "name": "SQL Queries",
+              "description": "Request for  reading/writing posts, users, comments.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "dcb7aa86-afa3-476d-b2e9-3d98cc21d563",
+                  "title": "Generic DoS Threat",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Denial of service",
+                  "description": "Query flooding or locking tables.",
+                  "mitigation": "Implement time frame rate limiting, use WAF (web application firewall), and use parameterized queries instead of dynamically building SQL strings from user input.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": "4.5"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "SQL Queries"
+            ],
+            "id": "e287d7d9-4e9d-4550-a4b3-79c7820d03a6",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "target": {
+              "cell": "6e0bf01d-50e4-4aae-ad28-b41a0621ed48",
+              "port": "60da6afb-40c8-4604-ab04-024cc636cddd"
+            },
+            "vertices": [
+              {
+                "x": 510,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Web App Queries Results",
+              "description": "Response to Queries for reading/writing posts, users, comments.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "5d4076f0-9f69-4cee-aed3-5b2a0581d24f",
+                  "title": "Generic Information disclosure Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Database dump/leak of passwords or posts",
+                  "mitigation": "Ensure that all user inputs are properly validated and sanitized.\nImplement strong authentication processes.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "6.5"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "Web App Queries Results"
+            ],
+            "id": "bcfa3360-77c5-4be3-b095-38e2e5fd50d0",
+            "source": {
+              "x": 160,
+              "y": 190
+            },
+            "target": {
+              "x": 590,
+              "y": 40
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 80
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": "4 3"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Exchange",
+              "description": "",
+              "outOfScope": true,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "Not testing from external apps",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
               "threats": []
             },
             "labels": [
-              "Data Flow"
+              "Data Exchange"
             ],
             "id": "52b06c22-6ada-4328-9510-7c3268a376ce",
             "source": {
@@ -671,7 +961,110 @@
             "target": {
               "cell": "7727bbe8-429f-4985-bac1-4c062d34cef9",
               "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-            }
+            },
+            "vertices": [
+              {
+                "x": 1270,
+                "y": 210
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excessive API requests",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "5.3"
+                },
+                {
+                  "id": "44c6a322-22cd-492b-bdd9-cbfb7dfd39ed",
+                  "title": "Generic Information Disclosure Threat",
+                  "status": "Open",
+                  "severity": "Low",
+                  "type": "Information disclosure",
+                  "description": "Overly verbose error messages or unsecured endpoints.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": "3.5"
+                },
+                {
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Altering API request payloads",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "6.2"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "Fetch Data Exchange"
+            ],
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
+            "source": {
+              "cell": "51f0c12c-8645-4d06-92e8-28d16376a378",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "vertices": [
+              {
+                "x": 830,
+                "y": 170
+              }
+            ]
           },
           {
             "shape": "flow",
@@ -720,7 +1113,7 @@
             "vertices": [
               {
                 "x": 180,
-                "y": -40
+                "y": -50
               }
             ]
           },
@@ -728,109 +1121,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "SQL Queries",
-              "description": "Request for  reading/writing posts, users, comments.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "SQL Queries"
-            ],
-            "id": "e287d7d9-4e9d-4550-a4b3-79c7820d03a6",
-            "source": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
-            },
-            "target": {
-              "cell": "6e0bf01d-50e4-4aae-ad28-b41a0621ed48",
-              "port": "60da6afb-40c8-4604-ab04-024cc636cddd"
-            },
-            "vertices": [
-              {
-                "x": 510,
-                "y": 160
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Web App Queries Results",
-              "description": "Response to Queries for reading/writing posts, users, comments.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Web App Queries Results"
-            ],
-            "id": "bcfa3360-77c5-4be3-b095-38e2e5fd50d0",
-            "source": {
-              "x": 160,
-              "y": 190
-            },
-            "target": {
-              "x": 590,
-              "y": 40
-            },
-            "vertices": [
-              {
-                "x": 350,
-                "y": 80
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -851,12 +1143,31 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "6c85d72c-ebc2-4ee9-8251-394dd936eda9",
+                  "title": "Generic Information Disclosure Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session data leaked in transit.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "6"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "Session ID Response"
@@ -881,7 +1192,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -902,24 +1214,43 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
+                  "title": "Generic Denial of service threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Flooding login/posts endpoints",
+                  "mitigation": "Set rate limiting\nImplement a strict CSP that explicitly whitelists trusted sources for all content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "7.6"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 1
+              }
             },
             "labels": [
               "HTTP Request"
             ],
             "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
             "source": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
-            },
-            "target": {
               "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
               "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
             },
             "vertices": [
               {
@@ -932,7 +1263,8 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "targetMarker": {
                   "name": "block"
                 },
@@ -953,151 +1285,65 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Leaked session cookies or error messages.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "6.8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             },
             "labels": [
               "HTTP Response"
             ],
             "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
             "source": {
+              "x": 740,
+              "y": -50
+            },
+            "target": {
               "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
               "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
             },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5e95066e-a6ac-4f1c-92fa-c0a5bd0b5518"
-            },
             "vertices": [
               {
-                "x": 990,
-                "y": -20
+                "x": 1010,
+                "y": 0
               }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": "block"
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Fetch Data Exchange",
-              "description": "External apps fetch data (posts, comments) or send data through APIs.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": true,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Fetch Data Exchange"
             ],
-            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
-            "source": {
-              "cell": "51f0c12c-8645-4d06-92e8-28d16376a378",
-              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
-            },
-            "vertices": [
-              {
-                "x": 830,
-                "y": 170
-              }
-            ]
-          },
-          {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "Trust Boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "labels": [
-              "Trust Boundary"
-            ],
-            "id": "cf9ee624-058e-46af-95f8-711359cffa08",
-            "source": {
-              "x": 360,
-              "y": 40
-            },
-            "target": {
-              "x": 560,
-              "y": 260
-            },
-            "vertices": [
-              {
-                "x": 500,
-                "y": 40
-              }
-            ]
-          },
-          {
-            "shape": "trust-boundary-curve",
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Boundary",
-              "name": "Internet boundary",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            },
-            "labels": [
-              "Internet boundary"
-            ],
-            "id": "6ebd7917-a0a3-4724-a047-f58b85ba75a6",
-            "source": {
-              "x": 1070,
-              "y": -250
-            },
-            "target": {
-              "x": 930,
-              "y": 70
-            },
-            "vertices": [
-              {
-                "x": 870,
-                "y": -60
-              }
-            ]
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "position": {
-              "x": 560,
-              "y": -120.00000000000036
+              "x": 540,
+              "y": -150
             },
             "size": {
               "width": 200,
@@ -1108,8 +1354,8 @@
                 "text": "Flask App / \n\nWeb App"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1206,23 +1452,116 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "3e324eb0-910b-41f9-9166-081d9b10da49",
+                  "title": "Generic Elevation of Privilege Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Exploiting DB misconfigurations, weak API authentication, or authorization bypass.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": "7.8"
+                },
+                {
+                  "id": "f8f19904-760c-4515-9772-7ed6f83a62fc",
+                  "title": "Generic Spoofing Threats",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "A generic spoofing threat ",
+                  "mitigation": "Ensure that the application is free of cross-site scripting issues. Most CSRF defenses can be bypassed using an attacker-controlled script.\n\nCheck the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "7.5"
+                },
+                {
+                  "id": "f6328b3d-287e-45ef-9612-52093f27d229",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "This is a generic tampering threat, such as Malicious input (form injection, XSS)",
+                  "mitigation": "Ensure one of the Content-Security-Policy and X-Frame-Options HTTP headers is set on all web pages returned by your site/app.\nConsider implementing Content Security Policy's \"frame-ancestors\" directive.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "7"
+                },
+                {
+                  "id": "e0796855-1ffe-4c52-a07b-ae40acc4ed02",
+                  "title": "Generic Repudiation threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "A generic repudiation threat, such as users denying login/logout without proper logging.",
+                  "mitigation": "Inspect session management.\nEnsure sensitive information is submitted via a POST request and not logged in server logs as part of a GET request.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": "5"
+                },
+                {
+                  "id": "7eb7d275-e407-473b-8c6d-886672b3ec6c",
+                  "title": "Generic Information disclosure Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "A generic Information disclosure Threat whereby Session data is leaked in transit.",
+                  "mitigation": "Ensure web server, application server, load balancer, etc., are configured to set the Content-Security-Policy header.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "8"
+                },
+                {
+                  "id": "25ff395d-a807-4038-9e33-106fae630128",
+                  "title": "Generic DOS Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "A generic Denial of Service threat, like Flooding login/posts endpoints.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": "6"
+                },
+                {
+                  "id": "6b901072-7b24-4edb-9b1c-bba3d7939ce6",
+                  "title": "Generic Elevation of Privilege Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Exploiting DB misconfigurations, weak API authentication, or authorization bypass.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": "7.8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 1,
+                "repudiation": 1,
+                "informationDisclosure": 1,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 2
+              }
             },
             "children": [
               "6308a8db-de54-43b1-9036-1c5a78afd27f"
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
-            }
+            ]
           }
         ],
         "description": "The Flask blog system consists of a User Interface, APIs, Login Sessions, and a Database, connected by trust boundaries between the client, web server, and data storage."
@@ -1230,6 +1569,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 2
+    "threatTop": 28
   }
 }
