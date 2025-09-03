@@ -1070,57 +1070,6 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Session ID Request",
-              "description": "Session token Issuance",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Session ID Request"
-            ],
-            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
-            "source": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
-            },
-            "target": {
-              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-            },
-            "vertices": [
-              {
-                "x": 180,
-                "y": -50
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "targetMarker": {
@@ -1328,17 +1277,78 @@
                 "x": 1010,
                 "y": 0
               }
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session ID Request",
+              "description": "Session token Issuance",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7aa45165-a312-4c81-b5bb-68a4b33a748b",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session data leaked in transit.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "5.8"
+                }
               ],
-              "name": null
-            }
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Request"
+            ],
+            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "target": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 180,
+                "y": -50
+              }
+            ]
           },
           {
             "position": {
@@ -1569,6 +1579,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 28
+    "threatTop": 29
   }
 }
