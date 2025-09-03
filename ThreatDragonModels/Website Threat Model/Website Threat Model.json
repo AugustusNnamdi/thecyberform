@@ -31,8 +31,8 @@
                 "text": "User Interface UI / \n\nBrowser"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -125,13 +125,31 @@
             "data": {
               "type": "tm.Actor",
               "name": "User Interface UI / \n\nBrowser",
-              "description": "",
+              "description": "The web pages (Jinja2 templates) served to users",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "5e1af4b1-4188-4de7-aedf-04cf20e318f7",
+                  "title": "Generic Spoofing Threats",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Fake login attempts, credential theft, and fake front-ends.",
+                  "mitigation": "Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid. For example, use anti-CSRF packages such as the OWASP CSRFGuard.\n\nGenerate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330). Note that this can be bypassed using XSS.\n\nUse the ESAPI Session Management control. This control includes a component for CSRF.\n\nDo not use the GET method for any request that triggers a state change.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "7.0"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1052,13 +1070,13 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Boundary",
-              "name": "Interweb / Internet",
+              "name": "Internet boundary",
               "description": "",
               "isTrustBoundary": true,
               "hasOpenThreats": false
             },
             "labels": [
-              "Interweb / Internet"
+              "Internet boundary"
             ],
             "id": "6ebd7917-a0a3-4724-a047-f58b85ba75a6",
             "source": {
@@ -1197,7 +1215,14 @@
             },
             "children": [
               "6308a8db-de54-43b1-9036-1c5a78afd27f"
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
+            }
           }
         ],
         "description": "The Flask blog system consists of a User Interface, APIs, Login Sessions, and a Database, connected by trust boundaries between the client, web server, and data storage."
@@ -1205,6 +1230,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 0
+    "threatTop": 2
   }
 }
