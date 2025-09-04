@@ -138,8 +138,8 @@
                   "status": "Open",
                   "severity": "High",
                   "type": "Spoofing",
-                  "description": "Fake login attempts, credential theft, and fake front-ends.",
-                  "mitigation": "Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid. For example, use anti-CSRF packages such as the OWASP CSRFGuard.\n\nGenerate a unique nonce for each form, place the nonce into the form, and verify the nonce upon receipt of the form. Be sure that the nonce is not predictable (CWE-330). Note that this can be bypassed using XSS.\n\nUse the ESAPI Session Management control. This control includes a component for CSRF.\n\nDo not use the GET method for any request that triggers a state change.",
+                  "description": "Phishing: Fake login attempts, credential theft, and fake front-ends.",
+                  "mitigation": "Align mitigation practice with OWASP Top Ten A01, A07, and, if necessary, A07.\nEnsure secure session handling and login page integrity.\nEducate users on recognizing fake login pages and suspicious links.\nImplement anti-phishing protections (e.g., domain validation, email filtering).",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 2,
@@ -147,12 +147,12 @@
                 },
                 {
                   "id": "f898f62b-5902-40aa-8ba4-a5b144f1dbba",
-                  "title": "Generic Repudiation",
+                  "title": "Generic Repudiation threat",
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Users deny login/logout without proper logging",
-                  "mitigation": "",
+                  "mitigation": "Implement security measures that prevent the manipulation of log data, such as logging all authentication events with timestamps, user IDs, IP addresses, and session IDs.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 11,
@@ -160,9 +160,16 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
-                "repudiation": 1
+                "spoofing": 3,
+                "repudiation": 2
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -1158,6 +1165,77 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "Session ID Request",
+              "description": "Session token Issuance",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7aa45165-a312-4c81-b5bb-68a4b33a748b",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session data leaked in transit.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "5.8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Request"
+            ],
+            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "target": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 180,
+                "y": -50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "HTTP Request",
               "description": "User submits forms (login, posts)",
               "outOfScope": false,
@@ -1173,20 +1251,33 @@
                   "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
                   "title": "Generic Denial of service threat",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Medium",
                   "type": "Denial of service",
                   "description": "Flooding login/posts endpoints",
-                  "mitigation": "Set rate limiting\nImplement a strict CSP that explicitly whitelists trusted sources for all content.",
+                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 27,
-                  "score": "7.6"
+                  "score": "5.8"
+                },
+                {
+                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
+                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nUse anti-CSRF tokens in forms and validate them server-side.\nImplement Same Site cookies to restrict cross-origin requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "5.0"
                 }
               ],
               "threatFrequency": {
-                "tampering": 0,
+                "tampering": 2,
                 "informationDisclosure": 0,
-                "denialOfService": 1
+                "denialOfService": 3
               }
             },
             "labels": [
@@ -1246,8 +1337,8 @@
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Leaked session cookies or error messages.",
-                  "mitigation": "",
+                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
+                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 28,
@@ -1256,7 +1347,7 @@
               ],
               "threatFrequency": {
                 "tampering": 0,
-                "informationDisclosure": 1,
+                "informationDisclosure": 2,
                 "denialOfService": 0
               }
             },
@@ -1276,77 +1367,6 @@
               {
                 "x": 1010,
                 "y": 0
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Session ID Request",
-              "description": "Session token Issuance",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "7aa45165-a312-4c81-b5bb-68a4b33a748b",
-                  "title": "Generic Information Disclosure threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session data leaked in transit.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 29,
-                  "score": "5.8"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 1,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "Session ID Request"
-            ],
-            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
-            "source": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
-            },
-            "target": {
-              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-            },
-            "vertices": [
-              {
-                "x": 180,
-                "y": -50
               }
             ]
           },
@@ -1579,6 +1599,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 29
+    "threatTop": 30
   }
 }
