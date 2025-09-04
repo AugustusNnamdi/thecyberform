@@ -176,7 +176,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Login Session\nManager"
+                "text": "Login Session"
               },
               "body": {
                 "stroke": "red",
@@ -272,8 +272,8 @@
             "id": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
             "data": {
               "type": "tm.Actor",
-              "name": "Login Session\nManager",
-              "description": "Exchange of login credentials, Handles authentication, session tokens/cookies, and user identity",
+              "name": "Login Session",
+              "description": "Manages login credentials, authentication, session tokens/cookies, and user identity",
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
@@ -286,8 +286,8 @@
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Stolen or forged session tokens.",
-                  "mitigation": "",
+                  "description": "Session Hijacking: A user's session cookie is stolen by an attacker and is used to impersonate them.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A02, A07.\nUse secure cookies with HttpOnly (HTTPS only) and SameSite flags.\nImplement Multi-Factor Authentication (MFA) as an extra layer of protection for when session tokens are compromised.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 25,
@@ -308,7 +308,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "repudiation": 1
               }
             }
@@ -803,148 +803,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Session ID Response",
-              "description": "Session validation requests and Logout / token invalidation",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "6c85d72c-ebc2-4ee9-8251-394dd936eda9",
-                  "title": "Generic Information Disclosure Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session data leaked in transit.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 14,
-                  "score": "6"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 1,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "Session ID Response"
-            ],
-            "id": "2b06d2a0-3136-4a20-acb3-0e45454da654",
-            "source": {
-              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
-              "port": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
-            },
-            "vertices": [
-              {
-                "x": 440,
-                "y": -180
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Session ID Request",
-              "description": "Session token Issuance",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "7aa45165-a312-4c81-b5bb-68a4b33a748b",
-                  "title": "Generic Information Disclosure threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session data leaked in transit.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 29,
-                  "score": "5.8"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 1,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "Session ID Request"
-            ],
-            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
-            "source": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
-            },
-            "target": {
-              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-            },
-            "vertices": [
-              {
-                "x": 180,
-                "y": -50
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "HTTP Response",
               "description": "Login response / returns HTML or JSON",
               "outOfScope": false,
@@ -1211,6 +1069,174 @@
               {
                 "x": 1270,
                 "y": 210
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session ID Request",
+              "description": "Session token Issuance",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "7aa45165-a312-4c81-b5bb-68a4b33a748b",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session data leaked in transit.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": "5.8"
+                },
+                {
+                  "id": "495fc8af-50eb-4085-b747-f52f82ea1031",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 33,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Request"
+            ],
+            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "target": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 180,
+                "y": -50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session ID Response",
+              "description": "Session validation requests and Logout / token invalidation",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "6c85d72c-ebc2-4ee9-8251-394dd936eda9",
+                  "title": "Generic Information Disclosure Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session data leaked in transit.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": "6"
+                },
+                {
+                  "id": "cdf41d4e-90e1-42de-8a4e-e3b084372527",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 34,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Response"
+            ],
+            "id": "2b06d2a0-3136-4a20-acb3-0e45454da654",
+            "source": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "vertices": [
+              {
+                "x": 440,
+                "y": -180
               }
             ]
           },
@@ -1533,6 +1559,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 32
+    "threatTop": 34
   }
 }
