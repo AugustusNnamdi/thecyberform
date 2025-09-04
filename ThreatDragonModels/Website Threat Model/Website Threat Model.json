@@ -163,13 +163,6 @@
                 "spoofing": 3,
                 "repudiation": 2
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -1236,6 +1229,77 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "HTTP Response",
+              "description": "Login response / returns HTML or JSON",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
+                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "6.8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "HTTP Response"
+            ],
+            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
+            "source": {
+              "x": 740,
+              "y": -50
+            },
+            "target": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 0
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "HTTP Request",
               "description": "User submits forms (login, posts)",
               "outOfScope": false,
@@ -1296,77 +1360,6 @@
               {
                 "x": 920,
                 "y": -190
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "HTTP Response",
-              "description": "Login response / returns HTML or JSON",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
-                  "title": "Generic Information Disclosure threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
-                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 28,
-                  "score": "6.8"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 2,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "HTTP Response"
-            ],
-            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
-            "source": {
-              "x": 740,
-              "y": -50
-            },
-            "target": {
-              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-            },
-            "vertices": [
-              {
-                "x": 1010,
-                "y": 0
               }
             ]
           },
@@ -1489,26 +1482,13 @@
               "privilegeLevel": "",
               "threats": [
                 {
-                  "id": "3e324eb0-910b-41f9-9166-081d9b10da49",
-                  "title": "Generic Elevation of Privilege Threat",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Elevation of privilege",
-                  "description": "Exploiting DB misconfigurations, weak API authentication, or authorization bypass.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 4,
-                  "score": "7.8"
-                },
-                {
                   "id": "f8f19904-760c-4515-9772-7ed6f83a62fc",
                   "title": "Generic Spoofing Threats",
                   "status": "Open",
                   "severity": "High",
                   "type": "Spoofing",
-                  "description": "A generic spoofing threat ",
-                  "mitigation": "Ensure that the application is free of cross-site scripting issues. Most CSRF defenses can be bypassed using an attacker-controlled script.\n\nCheck the HTTP Referer header to see if the request originated from an expected page. This could break legitimate functionality, because users or proxies may have disabled sending the Referer for privacy reasons.",
+                  "description": "Man-in-the-Middle (MitM)- Session cookies or login credentials are stolen by an attacker intercepting network traffic.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A02.\nEnforce HTTPS everywhere.\nUse strong cipher suites",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 5,
@@ -1518,80 +1498,48 @@
                   "id": "f6328b3d-287e-45ef-9612-52093f27d229",
                   "title": "Generic Tampering Threat",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "This is a generic tampering threat, such as Malicious input (form injection, XSS)",
-                  "mitigation": "Ensure one of the Content-Security-Policy and X-Frame-Options HTTP headers is set on all web pages returned by your site/app.\nConsider implementing Content Security Policy's \"frame-ancestors\" directive.",
+                  "description": "Anti-clickjacking: An attacker manipulates a webpage parameter to redirect to another mimicked website and gain access to another user's data",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nRestrict where content can be loaded from to prevent UI manipulation.\nUse X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 6,
-                  "score": "7"
-                },
-                {
-                  "id": "e0796855-1ffe-4c52-a07b-ae40acc4ed02",
-                  "title": "Generic Repudiation threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Repudiation",
-                  "description": "A generic repudiation threat, such as users denying login/logout without proper logging.",
-                  "mitigation": "Inspect session management.\nEnsure sensitive information is submitted via a POST request and not logged in server logs as part of a GET request.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 7,
-                  "score": "5"
+                  "score": "6.2"
                 },
                 {
                   "id": "7eb7d275-e407-473b-8c6d-886672b3ec6c",
-                  "title": "Generic Information disclosure Threat",
+                  "title": "Generic Information disclosure threat",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "A generic Information disclosure Threat whereby Session data is leaked in transit.",
-                  "mitigation": "Ensure web server, application server, load balancer, etc., are configured to set the Content-Security-Policy header.",
+                  "description": "A generic Information disclosure threat whereby data is exposed: APIs return more data than intended, such as an entire User object when only the username is needed.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nDefine and enforce a strict response schema\nEnforce field-level and object-level access restrictions.\nUse DTOs (Data Transfer Objects) or serializers to control output.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 8,
-                  "score": "8"
-                },
-                {
-                  "id": "25ff395d-a807-4038-9e33-106fae630128",
-                  "title": "Generic DOS Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "A generic Denial of Service threat, like Flooding login/posts endpoints.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 9,
-                  "score": "6"
-                },
-                {
-                  "id": "6b901072-7b24-4edb-9b1c-bba3d7939ce6",
-                  "title": "Generic Elevation of Privilege Threat",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Elevation of privilege",
-                  "description": "Exploiting DB misconfigurations, weak API authentication, or authorization bypass.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 10,
-                  "score": "7.8"
+                  "score": "5.2"
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
-                "tampering": 1,
-                "repudiation": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1,
-                "elevationOfPrivilege": 2
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
               }
             },
             "children": [
               "6308a8db-de54-43b1-9036-1c5a78afd27f"
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
+            }
           }
         ],
         "description": "The Flask blog system consists of a User Interface, APIs, Login Sessions, and a Database, connected by trust boundaries between the client, web server, and data storage."
