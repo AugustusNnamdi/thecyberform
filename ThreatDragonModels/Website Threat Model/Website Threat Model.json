@@ -461,142 +461,6 @@
           },
           {
             "position": {
-              "x": 1000,
-              "y": 130
-            },
-            "size": {
-              "width": 140,
-              "height": 80
-            },
-            "attrs": {
-              "text": {
-                "text": "API"
-              },
-              "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "actor",
-            "zIndex": 7,
-            "ports": {
-              "groups": {
-                "top": {
-                  "position": "top",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "right": {
-                  "position": "right",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "bottom": {
-                  "position": "bottom",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                },
-                "left": {
-                  "position": "left",
-                  "attrs": {
-                    "circle": {
-                      "r": 4,
-                      "magnet": true,
-                      "stroke": "#5F95FF",
-                      "strokeWidth": 1,
-                      "fill": "#fff",
-                      "style": {
-                        "visibility": "hidden"
-                      }
-                    }
-                  }
-                }
-              },
-              "items": [
-                {
-                  "group": "top",
-                  "id": "282eaa40-e2e3-488e-a4a8-ccacc24571ff"
-                },
-                {
-                  "group": "right",
-                  "id": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
-                },
-                {
-                  "group": "bottom",
-                  "id": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-                },
-                {
-                  "group": "left",
-                  "id": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-                }
-              ]
-            },
-            "id": "51f0c12c-8645-4d06-92e8-28d16376a378",
-            "data": {
-              "type": "tm.Actor",
-              "name": "API",
-              "description": "RESTful or ad-hoc endpoints (e.g., /api/posts, /login, /new_post)",
-              "isTrustBoundary": false,
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "providesAuthentication": false,
-              "threats": [
-                {
-                  "id": "074dea01-ec3c-41c0-8350-8b9ddf802abb",
-                  "title": "Generic Spoofing Threat",
-                  "status": "Open",
-                  "severity": "High",
-                  "type": "Spoofing",
-                  "description": "Fake clients pretending to be trusted apps.",
-                  "mitigation": "Use a standardized OAuth, token-based authorization framework\nImplement Least Privilege permissions, such as using Role-Based Access Control (RBAC) to ensure that each API key or token has the minimum permissions necessary for its intended task.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 22,
-                  "score": "7.5"
-                }
-              ],
-              "threatFrequency": {
-                "spoofing": 1,
-                "repudiation": 0
-              }
-            },
-            "children": []
-          },
-          {
-            "position": {
               "x": 1350,
               "y": 190.00000000000026
             },
@@ -922,154 +786,6 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": "block"
-                },
-                "strokeDasharray": "4 3"
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Data Exchange",
-              "description": "",
-              "outOfScope": true,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "Not testing from external apps",
-              "hasOpenThreats": false,
-              "isBidirectional": true,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "labels": [
-              "Data Exchange"
-            ],
-            "id": "52b06c22-6ada-4328-9510-7c3268a376ce",
-            "source": {
-              "cell": "51f0c12c-8645-4d06-92e8-28d16376a378",
-              "port": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
-            },
-            "target": {
-              "cell": "7727bbe8-429f-4985-bac1-4c062d34cef9",
-              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-            },
-            "vertices": [
-              {
-                "x": 1270,
-                "y": 210
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": "block"
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Fetch Data Exchange",
-              "description": "External apps fetch data (posts, comments) or send data through APIs.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": true,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
-                  "title": "Generic DoS Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Excessive API requests",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 20,
-                  "score": "5.3"
-                },
-                {
-                  "id": "44c6a322-22cd-492b-bdd9-cbfb7dfd39ed",
-                  "title": "Generic Information Disclosure Threat",
-                  "status": "Open",
-                  "severity": "Low",
-                  "type": "Information disclosure",
-                  "description": "Overly verbose error messages or unsecured endpoints.",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 21,
-                  "score": "3.5"
-                },
-                {
-                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
-                  "title": "Generic Tampering Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Altering API request payloads",
-                  "mitigation": "",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 23,
-                  "score": "6.2"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 1,
-                "informationDisclosure": 1,
-                "denialOfService": 1
-              }
-            },
-            "labels": [
-              "Fetch Data Exchange"
-            ],
-            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
-            "source": {
-              "cell": "51f0c12c-8645-4d06-92e8-28d16376a378",
-              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
-            },
-            "vertices": [
-              {
-                "x": 830,
-                "y": 170
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
                 "stroke": "red",
                 "strokeWidth": 2.5,
                 "targetMarker": {
@@ -1364,6 +1080,141 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "5.3"
+                },
+                {
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "6.2"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 2
+              }
+            },
+            "labels": [
+              "Fetch Data Exchange"
+            ],
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
+            "source": {
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "vertices": [
+              {
+                "x": 830,
+                "y": 170
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": "4 3"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Exchange",
+              "description": "",
+              "outOfScope": true,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "Not testing from external apps",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Data Exchange"
+            ],
+            "id": "52b06c22-6ada-4328-9510-7c3268a376ce",
+            "source": {
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "ee30604f-86f9-4b7a-937c-3860fc7973f5"
+            },
+            "target": {
+              "cell": "7727bbe8-429f-4985-bac1-4c062d34cef9",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "vertices": [
+              {
+                "x": 1270,
+                "y": 210
+              }
+            ]
+          },
+          {
             "position": {
               "x": 540,
               "y": -150
@@ -1532,13 +1383,148 @@
             },
             "children": [
               "6308a8db-de54-43b1-9036-1c5a78afd27f"
-            ],
-            "tools": {
+            ]
+          },
+          {
+            "position": {
+              "x": 990,
+              "y": 110
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "API"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
               "items": [
-                "boundary",
-                "button-remove"
+                {
+                  "group": "top",
+                  "id": "6a9ae22f-7b56-45f5-a6d8-d421c1e4f11a"
+                },
+                {
+                  "group": "right",
+                  "id": "ee30604f-86f9-4b7a-937c-3860fc7973f5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "8801cd79-0a91-409b-b535-4025e210e383"
+                },
+                {
+                  "group": "left",
+                  "id": "33c543b3-c192-41d2-af53-45d0007e25fe"
+                }
+              ]
+            },
+            "id": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+            "zIndex": 12,
+            "data": {
+              "type": "tm.Process",
+              "name": "API",
+              "description": "RESTful or ad-hoc endpoints",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "1e5c32d0-ff98-43f2-a621-9ec6e33ee239",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Data exposure- APIs return more data than intended, such as an entire User object when only the username is needed.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nDefine and enforce a strict response schema\nEnforce field-level and object-level access restrictions.\nUse DTOs (Data Transfer Objects) or serializers to control output.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "4.8"
+                }
               ],
-              "name": null
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
             }
           }
         ],
@@ -1547,6 +1533,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "UOB",
-    "threatTop": 30
+    "threatTop": 32
   }
 }
