@@ -3,7 +3,7 @@ name: Validate Threat Model
 on:
   push:
     paths:
-      - 'threat-models/*.json'
+      - 'ThreatDragonModels/Website Threat Model/Website Threat Model.json'
 
 jobs:
   validate-threat-model:
