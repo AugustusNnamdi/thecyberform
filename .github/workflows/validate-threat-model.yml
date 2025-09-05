@@ -16,20 +16,4 @@ jobs:
       - name: Validate JSON format
         run: |
           jq . 'ThreatDragonModels/Website Threat Model/Website Threat Model.json'
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install dependencies
-        run: pip install markdown
-
-      - name: Generate HTML Threat Report
-        run: python3 scripts/generate_html_report.py
-
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: Threat_Model_HTML_Report
-          path: Threat_Model_Summary.html
+          
