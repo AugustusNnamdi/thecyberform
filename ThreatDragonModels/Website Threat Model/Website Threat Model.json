@@ -136,14 +136,14 @@
                   "id": "5e1af4b1-4188-4de7-aedf-04cf20e318f7",
                   "title": "Generic Spoofing Threats",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Medium",
                   "type": "Spoofing",
                   "description": "Phishing: Fake login attempts, credential theft, and fake front-ends.",
                   "mitigation": "Align mitigation practice with OWASP Top Ten A01, A07, and, if necessary, A07.\nEnsure secure session handling and login page integrity.\nEducate users on recognizing fake login pages and suspicious links.\nImplement anti-phishing protections (e.g., domain validation, email filtering).",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 2,
-                  "score": "7.0"
+                  "score": "6.8"
                 },
                 {
                   "id": "f898f62b-5902-40aa-8ba4-a5b144f1dbba",
@@ -160,9 +160,16 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 3,
+                "spoofing": 4,
                 "repudiation": 2
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -721,90 +728,6 @@
                   "name": "block"
                 },
                 "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "HTTP Request",
-              "description": "User submits forms (login, posts)",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
-                  "title": "Generic Denial of service threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Flooding login/posts endpoints",
-                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 27,
-                  "score": "5.8"
-                },
-                {
-                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
-                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nUse anti-CSRF tokens in forms and validate them server-side.\nImplement Same Site cookies to restrict cross-origin requests.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 30,
-                  "score": "5.0"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 2,
-                "informationDisclosure": 0,
-                "denialOfService": 3
-              }
-            },
-            "labels": [
-              "HTTP Request"
-            ],
-            "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
-            "source": {
-              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
-              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
-            },
-            "vertices": [
-              {
-                "x": 920,
-                "y": -190
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
                   "name": "block"
                 },
                 "strokeDasharray": null
@@ -1170,6 +1093,90 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP Request",
+              "description": "User submits forms (login, posts)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
+                  "title": "Generic Denial of service threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding login/posts endpoints",
+                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "5.8"
+                },
+                {
+                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
+                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nUse anti-CSRF tokens in forms and validate them server-side.\nImplement Same Site cookies to restrict cross-origin requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 3
+              }
+            },
+            "labels": [
+              "HTTP Request"
+            ],
+            "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
+            "source": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
+            },
+            "vertices": [
+              {
+                "x": 920,
+                "y": -190
+              }
+            ]
+          },
+          {
             "position": {
               "x": 540,
               "y": -150
@@ -1361,6 +1368,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -1444,7 +1452,6 @@
               ]
             },
             "id": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
-            "zIndex": 12,
             "data": {
               "type": "tm.Process",
               "name": "API",
