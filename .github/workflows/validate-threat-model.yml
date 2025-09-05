@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Validate JSON format
         run: |
@@ -29,7 +29,7 @@ jobs:
         run: python3 scripts/generate_html_report.py
 
       - name: Upload HTML Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Threat_Model_HTML_Report
           path: Threat_Model_Summary.html
