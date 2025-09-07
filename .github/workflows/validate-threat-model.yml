@@ -1,0 +1,19 @@
+name: Validate Threat Model
+
+on:
+  push:
+    paths:
+      - 'ThreatDragonModels/Website Threat Model/Website Threat Model.json'
+
+jobs:
+  validate-threat-model:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate JSON format
+        run: |
+          jq . 'ThreatDragonModels/Website Threat Model/Website Threat Model.json'
+          
