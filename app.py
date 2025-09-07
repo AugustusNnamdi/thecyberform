@@ -21,7 +21,6 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'nosecret')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
-csrf = CSRFProtect(app)  # <-- Added CSRFProtect (STRIDE)
 Session(app)
 
 # Added security headers to mitigate vulnerabilities (STRIDE)
