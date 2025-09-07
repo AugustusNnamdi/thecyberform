@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 # Third-party imports
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort  # pyright: ignore[reportMissingImports]
-from flask_wtf.csrf import CSRFProtect  # <-- Added CSRFProtect for STRIDE
+from flask_wtf import CSRFProtect  # <-- Added CSRFProtect for STRIDE
 
 # First-party / local imports
 from flask_session import Session  # pyright: ignore[reportMissingImports]
