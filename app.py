@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 # Third-party imports
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort  # pyright: ignore[reportMissingImports]
+from flask_wtf.csrf import CSRFProtect  # <-- Added CSRFProtect for STRIDE
 
 # First-party / local imports
 from flask_session import Session  # pyright: ignore[reportMissingImports]
@@ -20,7 +21,33 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'nosecret')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
+csrf = CSRFProtect(app)  # <-- Added CSRFProtect for STRIDE
 Session(app)
+
+# Threat mitigation for STRIDE attacks vulnerabilities
+@app.after_request
+def set_security_headers(response):
+    """ Adds common security-related HTTP headers """
+
+    # Prevent clickjacking
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+
+    # Prevent XSS attacks in some browsers
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+
+    # Content Security Policy (CSP) to control resources loaded
+    csp_policy = [
+        "default-src 'self'; "
+        "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com,"
+        " https://stackpath.bootstrapcdn.com https://cdn.jsdelivr.net; "
+        "style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com,"
+        " https://cdn.jsdelivr.net; "
+        "font-src 'self' https://cdn.jsdelivr.net; "  # For Bootstrap Icons font files
+        "img-src 'self' data:; "  # 'data:' allows inline images
+    ]
+    response.headers['Content-Security-Policy'] = csp_policy
+
+    return response  # end of STRIDE set_security_headers
 
 
 def get_db_connection():
