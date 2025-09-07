@@ -722,90 +722,6 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": "block"
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Fetch Data Exchange",
-              "description": "External apps fetch data (posts, comments) or send data through APIs.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": true,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
-                  "title": "Generic DoS Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 20,
-                  "score": "5.3"
-                },
-                {
-                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
-                  "title": "Generic Tampering Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 23,
-                  "score": "6.2"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 2,
-                "informationDisclosure": 0,
-                "denialOfService": 2
-              }
-            },
-            "labels": [
-              "Fetch Data Exchange"
-            ],
-            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
-            "source": {
-              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
-              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
-            },
-            "vertices": [
-              {
-                "x": 830,
-                "y": 170
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
                 "stroke": "#333333",
                 "targetMarker": {
                   "name": "block"
@@ -1175,6 +1091,100 @@
                 "y": -190
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "5.3"
+                },
+                {
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "6.3"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 3,
+                "informationDisclosure": 0,
+                "denialOfService": 2
+              }
+            },
+            "labels": [
+              "Fetch Data Exchange"
+            ],
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
+            "source": {
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "vertices": [
+              {
+                "x": 830,
+                "y": 170
+              }
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "position": {
