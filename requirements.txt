@@ -4,4 +4,4 @@ Werkzeug==2.3.7
 gunicorn==21.2.0 
 bandit==1.7.9
 pytest==7.4.2
-requests==2.32.0
+requests==2.32.0Flask-WTF
