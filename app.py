@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 # Third-party imports
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort  # pyright: ignore[reportMissingImports]
+from flask_wtf.csrf import CSRFProtect  # <-- Added CSRFProtect for STRIDE
 
 
 # First-party / local imports
@@ -21,6 +22,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'nosecret')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
+csrf = CSRFProtect(app)  # <-- Added CSRFProtect (STRIDE)
 Session(app)
 
 # Added security headers to mitigate vulnerabilities (STRIDE)
