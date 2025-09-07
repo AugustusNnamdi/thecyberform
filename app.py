@@ -22,6 +22,30 @@ app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
 Session(app)
 
+@app.after_request
+def set_security_headers(response):
+    """ Adds common security-related HTTP headers """
+
+    # Prevent clickjacking
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+
+    # Prevent XSS attacks in some browsers
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+
+    # Content Security Policy (CSP) to control resources loaded
+    csp_policy = [
+        "default-src 'self'; "
+        "script-src 'self' https://code.jquery.com https://cdnjs.cloudflare.com,"
+        " https://stackpath.bootstrapcdn.com https://cdn.jsdelivr.net; "
+        "style-src 'self' 'unsafe-inline' https://stackpath.bootstrapcdn.com,"
+        " https://cdn.jsdelivr.net; "
+        "font-src 'self' https://cdn.jsdelivr.net; "  # For Bootstrap Icons font files
+        "img-src 'self' data:; "  # 'data:' allows inline images
+    ]
+    response.headers['Content-Security-Policy'] = csp_policy
+
+    return response
+
 
 def get_db_connection():
     """Create and return a new SQLite database connection with row factory set to sqlite3.Row."""
