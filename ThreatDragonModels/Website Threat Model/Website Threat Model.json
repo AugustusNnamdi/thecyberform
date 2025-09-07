@@ -1,0 +1,1500 @@
+{
+  "version": "2.5.0",
+  "summary": {
+    "title": "Website Threat Model",
+    "owner": "thecyberforum",
+    "description": "This Flask blog application provides a web-based User Interface for dedicated/assigned users to register, log in, and manage blog posts. Communication is done through the backend utilizing HTTP/HTTPS APIs and data exchanges, enabling authentication, post creation, and retrieval. Login sessions should enforce authenticated access, while the database stores sensitive information such as user credentials, session details, and blog content. These assets collectively enable the blog’s functionality and represent critical points requiring security protections.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "STRIDE diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.5.0",
+        "cells": [
+          {
+            "position": {
+              "x": 1080,
+              "y": -190
+            },
+            "size": {
+              "width": 160,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "User Interface UI / \n\nBrowser"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "282eaa40-e2e3-488e-a4a8-ccacc24571ff"
+                },
+                {
+                  "group": "right",
+                  "id": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+                },
+                {
+                  "group": "left",
+                  "id": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+                }
+              ]
+            },
+            "id": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+            "data": {
+              "type": "tm.Actor",
+              "name": "User Interface UI / \n\nBrowser",
+              "description": "The web pages (Jinja2 templates) served to users",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "5e1af4b1-4188-4de7-aedf-04cf20e318f7",
+                  "title": "Generic Spoofing Threats",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Phishing: Fake login attempts, credential theft, and fake front-ends.",
+                  "mitigation": "Align mitigation practice with OWASP Top Ten A01, A07, and, if necessary, A07.\nEnsure secure session handling and login page integrity.\nEducate users on recognizing fake login pages and suspicious links.\nImplement anti-phishing protections (e.g., domain validation, email filtering).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": "6.7"
+                },
+                {
+                  "id": "f898f62b-5902-40aa-8ba4-a5b144f1dbba",
+                  "title": "Generic Repudiation threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Users deny login/logout without proper logging",
+                  "mitigation": "Implement security measures that prevent the manipulation of log data, such as logging all authentication events with timestamps, user IDs, IP addresses, and session IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": "5.5"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 7,
+                "repudiation": 2
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
+            }
+          },
+          {
+            "position": {
+              "x": 60,
+              "y": -240
+            },
+            "size": {
+              "width": 150,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Login Session"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 3,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "282eaa40-e2e3-488e-a4a8-ccacc24571ff"
+                },
+                {
+                  "group": "right",
+                  "id": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+                },
+                {
+                  "group": "left",
+                  "id": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+                }
+              ]
+            },
+            "id": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Login Session",
+              "description": "Manages login credentials, authentication, session tokens/cookies, and user identity",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "cf056832-d364-4a2f-bb7e-82d397ba8f83",
+                  "title": "Generic Spoofing threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Session Hijacking: A user's session cookie is stolen by an attacker and is used to impersonate them.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A02, A07.\nUse secure cookies with HttpOnly (HTTPS only) and SameSite flags.\nImplement Multi-Factor Authentication (MFA) as an extra layer of protection for when session tokens are compromised.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": "5.8"
+                },
+                {
+                  "id": "49e91cd9-89f6-438d-9fcd-fe4b3103f278",
+                  "title": "Generic Repudiation threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Repudiation",
+                  "description": "Logging Deficit: Users deny login/logout without proper logging.",
+                  "mitigation": "Ensure it aligns with OWASP Top Ten mitigation guidance A10.\nImplement security measures that prevent the manipulation of log data, such as logging all authentication events with timestamps, user IDs, IP addresses, and session IDs.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 2
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 70,
+              "y": 180.00000000000023
+            },
+            "size": {
+              "width": 190,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Database"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 4,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "3507bd47-b58c-4922-b8fe-4dda051ccc3e"
+                },
+                {
+                  "group": "right",
+                  "id": "60da6afb-40c8-4604-ab04-024cc636cddd"
+                },
+                {
+                  "group": "bottom",
+                  "id": "0a64f497-a498-485c-ad6a-596c40b32e57"
+                },
+                {
+                  "group": "left",
+                  "id": "661cc548-b001-4737-b06c-85df0d7d88a3"
+                }
+              ]
+            },
+            "id": "6e0bf01d-50e4-4aae-ad28-b41a0621ed48",
+            "data": {
+              "type": "tm.Store",
+              "name": "Database",
+              "description": "Persistent storage containing users, posts, and comments.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "4d4a479b-a2fd-4a37-afcd-abbb693f64d0",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "SQL injection or unauthorized modifications: Malicious SQL code is injected by an attacker through user input",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A03.\nUse ORMs and Query Builders for secure frameworks that abstract query logic.\nUse Parameterized Queries / Prepared Statements, and avoid dynamic SQL construction using user input.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": "7.2"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "repudiation": -1,
+                "informationDisclosure": 3,
+                "denialOfService": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 1350,
+              "y": 190.00000000000026
+            },
+            "size": {
+              "width": 130,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "External Apps"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": "4 3"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 8,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "282eaa40-e2e3-488e-a4a8-ccacc24571ff"
+                },
+                {
+                  "group": "right",
+                  "id": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+                },
+                {
+                  "group": "bottom",
+                  "id": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+                },
+                {
+                  "group": "left",
+                  "id": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+                }
+              ]
+            },
+            "id": "7727bbe8-429f-4985-bac1-4c062d34cef9",
+            "data": {
+              "type": "tm.Actor",
+              "name": "External Apps",
+              "description": "Connecting to any external app if necessary",
+              "isTrustBoundary": false,
+              "outOfScope": true,
+              "reasonOutOfScope": "This is still a testing/development stage",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet boundary",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Internet boundary"
+            ],
+            "id": "6ebd7917-a0a3-4724-a047-f58b85ba75a6",
+            "source": {
+              "x": 1070,
+              "y": -250
+            },
+            "target": {
+              "x": 930,
+              "y": 70
+            },
+            "vertices": [
+              {
+                "x": 870,
+                "y": -60
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Data Boundary",
+              "description": "This trust between Data and Webapp exchange.",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "labels": [
+              "Data Boundary"
+            ],
+            "id": "cf9ee624-058e-46af-95f8-711359cffa08",
+            "source": {
+              "x": 360,
+              "y": 40
+            },
+            "target": {
+              "x": 560,
+              "y": 260
+            },
+            "vertices": [
+              {
+                "x": 500,
+                "y": 40
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP Response",
+              "description": "Login response / returns HTML or JSON",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
+                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "6.8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "HTTP Response"
+            ],
+            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
+            "source": {
+              "x": 740,
+              "y": -50
+            },
+            "target": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 0
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": "5.3"
+                },
+                {
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "6.2"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 2
+              }
+            },
+            "labels": [
+              "Fetch Data Exchange"
+            ],
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
+            "source": {
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "vertices": [
+              {
+                "x": 830,
+                "y": 170
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": "4 3"
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Exchange",
+              "description": "",
+              "outOfScope": true,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "Not testing from external apps",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Data Exchange"
+            ],
+            "id": "52b06c22-6ada-4328-9510-7c3268a376ce",
+            "source": {
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "ee30604f-86f9-4b7a-937c-3860fc7973f5"
+            },
+            "target": {
+              "cell": "7727bbe8-429f-4985-bac1-4c062d34cef9",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "vertices": [
+              {
+                "x": 1270,
+                "y": 210
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session ID Request",
+              "description": "Session token Issuance",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Request"
+            ],
+            "id": "4b7d333b-2694-4b63-991c-e6c54f8927b2",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "target": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 180,
+                "y": -50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session ID Response",
+              "description": "Session validation requests and Logout / token invalidation",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "Session ID Response"
+            ],
+            "id": "2b06d2a0-3136-4a20-acb3-0e45454da654",
+            "source": {
+              "cell": "bb1c9fb0-98f5-4f32-a1df-afcb078ecbf0",
+              "port": "fbf03206-7a9c-43c7-b4f1-4f7aefe192a8"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+            },
+            "vertices": [
+              {
+                "x": 440,
+                "y": -180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL Queries",
+              "description": "Request for  reading/writing posts, users, comments.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "SQL Queries"
+            ],
+            "id": "e287d7d9-4e9d-4550-a4b3-79c7820d03a6",
+            "source": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+            },
+            "target": {
+              "cell": "6e0bf01d-50e4-4aae-ad28-b41a0621ed48",
+              "port": "60da6afb-40c8-4604-ab04-024cc636cddd"
+            },
+            "vertices": [
+              {
+                "x": 510,
+                "y": 160
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Web App Queries Results",
+              "description": "Response to Queries for reading/writing posts, users, comments.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "5d4076f0-9f69-4cee-aed3-5b2a0581d24f",
+                  "title": "Generic Information disclosure Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Sensitive data is stored in plaintext. Due to misconfiguration or server breach, the database file or backup is exposed.",
+                  "mitigation": "Ensure alignment with OWASP Top Ten mitigation guidance A02.\nEncrypt Sensitive Data at Rest with strong encryption algorithms\nHashing algorithms like bcrypt, Argon2, or PBKDF2 are used to secure passwords with salting.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": "6.5"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 3,
+                "denialOfService": 1
+              }
+            },
+            "labels": [
+              "Web App Queries Results"
+            ],
+            "id": "bcfa3360-77c5-4be3-b095-38e2e5fd50d0",
+            "source": {
+              "x": 170,
+              "y": 180
+            },
+            "target": {
+              "x": 590,
+              "y": 40
+            },
+            "vertices": [
+              {
+                "x": 350,
+                "y": 80
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP Request",
+              "description": "User submits forms (login, posts)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
+                  "title": "Generic Denial of service threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding login/posts endpoints",
+                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "5.8"
+                },
+                {
+                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
+                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nUse anti-CSRF tokens in forms and validate them server-side.\nImplement Same Site cookies to restrict cross-origin requests.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 3
+              }
+            },
+            "labels": [
+              "HTTP Request"
+            ],
+            "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
+            "source": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
+            },
+            "vertices": [
+              {
+                "x": 920,
+                "y": -190
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 540,
+              "y": -150
+            },
+            "size": {
+              "width": 200,
+              "height": 200
+            },
+            "attrs": {
+              "text": {
+                "text": "Flask App / \n\nWeb App"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 11,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
+                },
+                {
+                  "group": "right",
+                  "id": "5e95066e-a6ac-4f1c-92fa-c0a5bd0b5518"
+                },
+                {
+                  "group": "bottom",
+                  "id": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+                },
+                {
+                  "group": "left",
+                  "id": "08bc3cdd-ab94-4495-91c4-a6d0857d3e3c"
+                }
+              ]
+            },
+            "id": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+            "data": {
+              "type": "tm.Process",
+              "name": "Flask App / \n\nWeb App",
+              "description": "Python web application built using Flask.",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "f8f19904-760c-4515-9772-7ed6f83a62fc",
+                  "title": "Generic Spoofing Threats",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Man-in-the-Middle (MitM)- Session cookies or login credentials are stolen by an attacker intercepting network traffic.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A02.\nEnforce HTTPS everywhere.\nUse strong cipher suites",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": "7.5"
+                },
+                {
+                  "id": "f6328b3d-287e-45ef-9612-52093f27d229",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Anti-clickjacking: An attacker manipulates a webpage parameter to redirect to another mimicked website and gain access to another user's data",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nRestrict where content can be loaded from to prevent UI manipulation.\nUse X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": "6.2"
+                },
+                {
+                  "id": "7eb7d275-e407-473b-8c6d-886672b3ec6c",
+                  "title": "Generic Information disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "A generic Information disclosure threat whereby data is exposed: APIs return more data than intended, such as an entire User object when only the username is needed.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nDefine and enforce a strict response schema\nEnforce field-level and object-level access restrictions.\nUse DTOs (Data Transfer Objects) or serializers to control output.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": "5.2"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "tampering": 2,
+                "repudiation": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            },
+            "children": [
+              "6308a8db-de54-43b1-9036-1c5a78afd27f"
+            ]
+          },
+          {
+            "position": {
+              "x": 990,
+              "y": 110
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "API"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 12,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "6a9ae22f-7b56-45f5-a6d8-d421c1e4f11a"
+                },
+                {
+                  "group": "right",
+                  "id": "ee30604f-86f9-4b7a-937c-3860fc7973f5"
+                },
+                {
+                  "group": "bottom",
+                  "id": "8801cd79-0a91-409b-b535-4025e210e383"
+                },
+                {
+                  "group": "left",
+                  "id": "33c543b3-c192-41d2-af53-45d0007e25fe"
+                }
+              ]
+            },
+            "id": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+            "data": {
+              "type": "tm.Process",
+              "name": "API",
+              "description": "RESTful or ad-hoc endpoints",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "1e5c32d0-ff98-43f2-a621-9ec6e33ee239",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Data exposure- APIs return more data than intended, such as an entire User object when only the username is needed.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nDefine and enforce a strict response schema\nEnforce field-level and object-level access restrictions.\nUse DTOs (Data Transfer Objects) or serializers to control output.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": "4.8"
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              }
+            }
+          }
+        ],
+        "description": "The Flask blog system consists of a User Interface, APIs, Login Sessions, and a Database, connected by trust boundaries between the client, web server, and data storage."
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "UOB",
+    "threatTop": 34
+  }
+}

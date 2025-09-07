@@ -21,10 +21,10 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'nosecret')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=30)
-csrf = CSRFProtect(app)  # <-- Added CSRFProtect for STRIDE
+csrf = CSRFProtect(app)  # <-- Added CSRFProtect (STRIDE)
 Session(app)
 
-# Threat mitigation for STRIDE attacks vulnerabilities
+# Added security headers to mitigate vulnerabilities (STRIDE)
 @app.after_request
 def set_security_headers(response):
     """ Adds common security-related HTTP headers """
@@ -47,8 +47,7 @@ def set_security_headers(response):
     ]
     response.headers['Content-Security-Policy'] = csp_policy
 
-    return response  # end of STRIDE set_security_headers
-
+    return response
 
 def get_db_connection():
     """Create and return a new SQLite database connection with row factory set to sqlite3.Row."""
