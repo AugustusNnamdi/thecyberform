@@ -148,11 +148,11 @@
                 {
                   "id": "f898f62b-5902-40aa-8ba4-a5b144f1dbba",
                   "title": "Generic Repudiation threat",
-                  "status": "Open",
+                  "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Users deny login/logout without proper logging",
-                  "mitigation": "Implement security measures that prevent the manipulation of log data, such as logging all authentication events with timestamps, user IDs, IP addresses, and session IDs.",
+                  "mitigation": "Mitigated through validation of the CSRF-TOKEN header on all POST requests using Flask-WTF. The token is stored in the session.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 11,
@@ -161,15 +161,8 @@
               ],
               "threatFrequency": {
                 "spoofing": 7,
-                "repudiation": 2
+                "repudiation": 4
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           },
           {
@@ -303,11 +296,11 @@
                 {
                   "id": "49e91cd9-89f6-438d-9fcd-fe4b3103f278",
                   "title": "Generic Repudiation threat",
-                  "status": "Open",
+                  "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Repudiation",
                   "description": "Logging Deficit: Users deny login/logout without proper logging.",
-                  "mitigation": "Ensure it aligns with OWASP Top Ten mitigation guidance A10.\nImplement security measures that prevent the manipulation of log data, such as logging all authentication events with timestamps, user IDs, IP addresses, and session IDs.",
+                  "mitigation": "Ensuring it aligns with OWASP Top Ten mitigation guidance A10.\nMitigated through validation of the CSRF-TOKEN header on all POST requests using Flask-WTF. The token is stored in the session.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 26,
@@ -316,7 +309,7 @@
               ],
               "threatFrequency": {
                 "spoofing": 2,
-                "repudiation": 2
+                "repudiation": 3
               }
             }
           },
@@ -651,161 +644,6 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "HTTP Response",
-              "description": "Login response / returns HTML or JSON",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
-                  "title": "Generic Information Disclosure threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
-                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 28,
-                  "score": "6.8"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 2,
-                "denialOfService": 0
-              }
-            },
-            "labels": [
-              "HTTP Response"
-            ],
-            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
-            "source": {
-              "x": 740,
-              "y": -50
-            },
-            "target": {
-              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
-            },
-            "vertices": [
-              {
-                "x": 1010,
-                "y": 0
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": "block"
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Fetch Data Exchange",
-              "description": "External apps fetch data (posts, comments) or send data through APIs.",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": true,
-              "isBidirectional": true,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [
-                {
-                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
-                  "title": "Generic DoS Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 20,
-                  "score": "5.3"
-                },
-                {
-                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
-                  "title": "Generic Tampering Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 23,
-                  "score": "6.2"
-                }
-              ],
-              "threatFrequency": {
-                "tampering": 2,
-                "informationDisclosure": 0,
-                "denialOfService": 2
-              }
-            },
-            "labels": [
-              "Fetch Data Exchange"
-            ],
-            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
-            "source": {
-              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
-              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
-            },
-            "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
-            },
-            "vertices": [
-              {
-                "x": 830,
-                "y": 170
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
                 "stroke": "#333333",
                 "targetMarker": {
                   "name": "block"
@@ -1042,6 +880,161 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
+              "name": "HTTP Request",
+              "description": "User submits forms (login, posts)",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
+                  "title": "Generic Denial of service threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Flooding login/posts endpoints",
+                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": "5.8"
+                },
+                {
+                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
+                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nMitigated through validation of the CSRF-TOKEN header on all POST requests using Flask-WTF. The token is stored in the session..",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": "5.0"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 3,
+                "informationDisclosure": 0,
+                "denialOfService": 3
+              }
+            },
+            "labels": [
+              "HTTP Request"
+            ],
+            "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
+            "source": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+            },
+            "target": {
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
+            },
+            "vertices": [
+              {
+                "x": 920,
+                "y": -190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTP Response",
+              "description": "Login response / returns HTML or JSON",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
+                  "title": "Generic Information Disclosure threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
+                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": "6.8"
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
+              }
+            },
+            "labels": [
+              "HTTP Response"
+            ],
+            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
+            "source": {
+              "x": 740,
+              "y": -50
+            },
+            "target": {
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+            },
+            "vertices": [
+              {
+                "x": 1010,
+                "y": 0
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
               "name": "Web App Queries Results",
               "description": "Response to Queries for reading/writing posts, users, comments.",
               "outOfScope": false,
@@ -1102,7 +1095,7 @@
                   "name": "block"
                 },
                 "sourceMarker": {
-                  "name": ""
+                  "name": "block"
                 },
                 "strokeDasharray": null
               }
@@ -1113,66 +1106,66 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "HTTP Request",
-              "description": "User submits forms (login, posts)",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": true,
-              "isBidirectional": false,
+              "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [
                 {
-                  "id": "a3d8ea16-687a-402f-8bac-9400eafb802c",
-                  "title": "Generic Denial of service threat",
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Denial of service",
-                  "description": "Flooding login/posts endpoints",
-                  "mitigation": "Implement rate limiting to restrict the number of requests per IP/user per time window.\nUse WAF (Web Application Firewall) to detect and block suspicious traffic patterns.",
+                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 27,
-                  "score": "5.8"
+                  "number": 20,
+                  "score": "5.3"
                 },
                 {
-                  "id": "ee3de6ce-3275-4118-91ca-c3df8a309890",
-                  "title": "New STRIDE threat",
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
                   "status": "Open",
                   "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Cross-Site Request Forgery (CSRF): A logged-in user is manipulated by an attacker into submitting a malicious form.",
-                  "mitigation": "Align with OWASP Top 10 mitigation practices for A05 and A01.\nUse anti-CSRF tokens in forms and validate them server-side.\nImplement Same Site cookies to restrict cross-origin requests.",
+                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 30,
-                  "score": "5.0"
+                  "number": 23,
+                  "score": "6.2"
                 }
               ],
               "threatFrequency": {
                 "tampering": 2,
                 "informationDisclosure": 0,
-                "denialOfService": 3
+                "denialOfService": 2
               }
             },
             "labels": [
-              "HTTP Request"
+              "Fetch Data Exchange"
             ],
-            "id": "f0cea801-3854-41ab-ac8a-e7f374f143bc",
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
             "source": {
-              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
-              "port": "fc8fc042-9e3e-4236-8605-878f0d9a5ca5"
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
             },
             "target": {
               "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "c0e39582-e82d-458b-9fb4-8eaa60f4fc05"
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
             },
             "vertices": [
               {
-                "x": 920,
-                "y": -190
+                "x": 830,
+                "y": 170
               }
             ]
           },
@@ -1310,11 +1303,11 @@
                 {
                   "id": "f6328b3d-287e-45ef-9612-52093f27d229",
                   "title": "Generic Tampering Threat",
-                  "status": "Open",
+                  "status": "Mitigated",
                   "severity": "Medium",
                   "type": "Tampering",
                   "description": "Anti-clickjacking: An attacker manipulates a webpage parameter to redirect to another mimicked website and gain access to another user's data",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A04.\nRestrict where content can be loaded from to prevent UI manipulation.\nUse X-Frame-Options: DENY or Content-Security-Policy: frame-ancestors 'none'.",
+                  "mitigation": "Mitigated by setting the X-Frame-Options: DENY or using CSP frame-ancestors\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 6,
@@ -1336,7 +1329,7 @@
               ],
               "threatFrequency": {
                 "spoofing": 2,
-                "tampering": 2,
+                "tampering": 3,
                 "repudiation": 0,
                 "informationDisclosure": 2,
                 "denialOfService": 0,
@@ -1487,6 +1480,13 @@
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ],
