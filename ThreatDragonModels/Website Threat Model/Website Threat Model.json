@@ -441,18 +441,18 @@
                   "id": "4d4a479b-a2fd-4a37-afcd-abbb693f64d0",
                   "title": "Generic Tampering Threat",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Low",
                   "type": "Tampering",
                   "description": "SQL injection or unauthorized modifications: Malicious SQL code is injected by an attacker through user input",
                   "mitigation": "Align with OWASP Top Ten mitigation practice A03.\nUse ORMs and Query Builders for secure frameworks that abstract query logic.\nUse Parameterized Queries / Prepared Statements, and avoid dynamic SQL construction using user input.",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 18,
-                  "score": "7.2"
+                  "score": "2.6"
                 }
               ],
               "threatFrequency": {
-                "tampering": 2,
+                "tampering": 3,
                 "repudiation": -1,
                 "informationDisclosure": 3,
                 "denialOfService": 0
@@ -953,7 +953,7 @@
                   "name": "block"
                 },
                 "sourceMarker": {
-                  "name": ""
+                  "name": "block"
                 },
                 "strokeDasharray": null
               }
@@ -964,53 +964,66 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "HTTP Response",
-              "description": "Login response / returns HTML or JSON",
+              "name": "Fetch Data Exchange",
+              "description": "External apps fetch data (posts, comments) or send data through APIs.",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": true,
-              "isBidirectional": false,
+              "isBidirectional": true,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [
                 {
-                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
-                  "title": "Generic Information Disclosure threat",
+                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
+                  "title": "Generic DoS Threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Information disclosure",
-                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
-                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
+                  "type": "Denial of service",
+                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 28,
-                  "score": "6.8"
+                  "number": 20,
+                  "score": "5.3"
+                },
+                {
+                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
+                  "title": "Generic Tampering Threat",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
+                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": "6.2"
                 }
               ],
               "threatFrequency": {
-                "tampering": 0,
-                "informationDisclosure": 2,
-                "denialOfService": 0
+                "tampering": 2,
+                "informationDisclosure": 0,
+                "denialOfService": 2
               }
             },
             "labels": [
-              "HTTP Response"
+              "Fetch Data Exchange"
             ],
-            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
+            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
             "source": {
-              "x": 740,
-              "y": -50
+              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
+              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
             },
             "target": {
-              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
-              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
+              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
+              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
             },
             "vertices": [
               {
-                "x": 1010,
-                "y": 0
+                "x": 830,
+                "y": 170
               }
             ]
           },
@@ -1095,7 +1108,7 @@
                   "name": "block"
                 },
                 "sourceMarker": {
-                  "name": "block"
+                  "name": ""
                 },
                 "strokeDasharray": null
               }
@@ -1106,68 +1119,65 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Fetch Data Exchange",
-              "description": "External apps fetch data (posts, comments) or send data through APIs.",
+              "name": "HTTP Response",
+              "description": "Login response / returns HTML or JSON",
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": true,
-              "isBidirectional": true,
+              "isBidirectional": false,
               "isEncrypted": false,
               "isPublicNetwork": false,
               "protocol": "",
               "threats": [
                 {
-                  "id": "932cec50-9c3c-4905-a142-2e49eddfd67a",
-                  "title": "Generic DoS Threat",
+                  "id": "ae88ac10-aaca-4b3c-8076-cb0c73470606",
+                  "title": "Generic Information Disclosure threat",
                   "status": "Open",
                   "severity": "Medium",
-                  "type": "Denial of service",
-                  "description": "Excessive API requests: An attacker floods an unauthenticated API endpoint (e.g., a search function or login page) with requests.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A09, A04.\nUse a rate-limiting library to restrict the number of requests\nUse CAPTCHA on sensitive endpoints such as login and search forms, to prevent automated abuse",
+                  "type": "Information disclosure",
+                  "description": "Session Sniffing - leaked session cookies or error messages and transmitting sensitive data (passwords, session IDs) over unencrypted HTTP",
+                  "mitigation": "Align with OWASP Top 10 mitigation practice A02\nEnforce HTTPS Everywhere\nSet Secure, HttpOnly, and SameSite attributes on session cookies.",
                   "modelType": "STRIDE",
                   "new": false,
-                  "number": 20,
-                  "score": "5.3"
-                },
-                {
-                  "id": "d986284d-d4b1-4c65-8810-6ad2186a3941",
-                  "title": "Generic Tampering Threat",
-                  "status": "Open",
-                  "severity": "Medium",
-                  "type": "Tampering",
-                  "description": "Insecure Direct Object Reference (IDOR), where access to another user's data is gained by an attacker manipulating API parameters.",
-                  "mitigation": "Align with OWASP Top Ten mitigation practice A01.\nUse role-based or attribute-based access control (RBAC/ABAC)\nValidate user permissions for every object accessed and never trust the client-side.",
-                  "modelType": "STRIDE",
-                  "new": false,
-                  "number": 23,
-                  "score": "6.2"
+                  "number": 28,
+                  "score": "6.8"
                 }
               ],
               "threatFrequency": {
-                "tampering": 2,
-                "informationDisclosure": 0,
-                "denialOfService": 2
+                "tampering": 0,
+                "informationDisclosure": 2,
+                "denialOfService": 0
               }
             },
             "labels": [
-              "Fetch Data Exchange"
+              "HTTP Response"
             ],
-            "id": "ab1a9df1-4d68-4b21-8b1c-7154ce5c2249",
+            "id": "bee4ddd2-b26e-4dec-a50b-ededbd99d869",
             "source": {
-              "cell": "4da7ef26-dfdd-46c0-9d89-5ac8a02f7756",
-              "port": "33c543b3-c192-41d2-af53-45d0007e25fe"
+              "x": 740,
+              "y": -50
             },
             "target": {
-              "cell": "7c6f6ada-f8cc-467d-b5f3-0ba67ef5a622",
-              "port": "5a2a3da2-3ce3-40c5-8ebd-2a15c42b41a7"
+              "cell": "414b3ff5-7fd4-4833-8116-f6a7ceed181e",
+              "port": "a13e7b6e-719f-40c4-8c6c-bff1591233bf"
             },
             "vertices": [
               {
-                "x": 830,
-                "y": 170
+                "x": 1010,
+                "y": 0
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           },
           {
             "position": {
@@ -1291,14 +1301,14 @@
                   "id": "f8f19904-760c-4515-9772-7ed6f83a62fc",
                   "title": "Generic Spoofing Threats",
                   "status": "Open",
-                  "severity": "High",
+                  "severity": "Medium",
                   "type": "Spoofing",
                   "description": "Man-in-the-Middle (MitM)- Session cookies or login credentials are stolen by an attacker intercepting network traffic.",
                   "mitigation": "Align with OWASP Top Ten mitigation practice A02.\nEnforce HTTPS everywhere.\nUse strong cipher suites",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 5,
-                  "score": "7.5"
+                  "score": "5.6"
                 },
                 {
                   "id": "f6328b3d-287e-45ef-9612-52093f27d229",
@@ -1328,7 +1338,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 2,
+                "spoofing": 3,
                 "tampering": 3,
                 "repudiation": 0,
                 "informationDisclosure": 2,
@@ -1480,13 +1490,6 @@
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
-            },
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove"
-              ],
-              "name": null
             }
           }
         ],
